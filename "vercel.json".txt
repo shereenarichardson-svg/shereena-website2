@@ -1,15 +1,9 @@
 {
-  "version": 2,
-  "builds": [
+  "redirects": [
     {
-      "src": "public/index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "public/index.html"
+      "source": "/:path*",
+      "destination": "https://shereenasaas.co.uk/:path*",
+      "permanent": true
     }
   ]
 }
