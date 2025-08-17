@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShereenaSaaS | Premium Reputation Management</title>
+    <title>Shereenasaas | Premium Reputation Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
     <style>
@@ -74,9 +73,8 @@
             align-items: center;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--lighter);
-            text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
         }
@@ -85,6 +83,25 @@
             margin-right: 12px;
             color: var(--secondary);
             font-size: 1.8rem;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        
+        .logo-main {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+        
+        .logo-sub {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--secondary);
+            letter-spacing: 2px;
+            text-transform: lowercase;
         }
         
         .logo::after {
@@ -163,7 +180,6 @@
             border: 2px solid var(--primary-light);
             color: var(--lighter);
             background: transparent;
-            margin-right: 20px;
         }
         
         .btn-outline:hover {
@@ -663,6 +679,28 @@
             font-weight: 700;
         }
         
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .calendar-nav button {
+            background: transparent;
+            border: none;
+            color: var(--lighter);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .calendar-nav button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -688,6 +726,11 @@
             font-size: 1.1rem;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transform: translateZ(0);
+        }
+        
+        .calendar-date.today {
+            background: rgba(67, 198, 240, 0.15);
+            border: 1px solid rgba(67, 198, 240, 0.3);
         }
         
         .calendar-date:hover {
@@ -953,6 +996,36 @@
             }
         }
         
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .check-animation {
+            animation: heartbeat 1s infinite;
+            color: var(--success);
+            display: inline-block;
+        }
+        
+        /* Calendar animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .calendar-date.selected {
+            animation: pulse 0.5s ease;
+        }
+        
+        .time-slot.selected {
+            animation: pulse 0.5s ease;
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .hero-content {
@@ -1023,6 +1096,19 @@
             .calendar-container {
                 padding: 30px;
             }
+            
+            .calendar-grid {
+                gap: 8px;
+            }
+            
+            .calendar-date {
+                padding: 15px 8px;
+                font-size: 1rem;
+            }
+            
+            .time-slot {
+                padding: 12px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1059,6 +1145,14 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .calendar-nav {
+                gap: 10px;
+            }
+            
+            .calendar-header h3 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -1069,7 +1163,10 @@
             <nav class="navbar">
                 <div class="logo">
                     <i class="fas fa-shield-alt"></i>
-                    ShereenaSaaS
+                    <div class="logo-text">
+                        <div class="logo-main">SHEREENA</div>
+                        <div class="logo-sub">saas</div>
+                    </div>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#features">Solutions</a></li>
@@ -1078,7 +1175,6 @@
                     <li><a href="#testimonials">Success Stories</a></li>
                 </ul>
                 <div class="nav-buttons">
-                    <a href="#" class="btn btn-outline">Client Login</a>
                     <a href="#consultation" class="btn btn-primary">Book Strategy Session</a>
                 </div>
             </nav>
@@ -1091,7 +1187,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Transform Your <span>Business Reputation</span> With Premium Solutions</h1>
-                    <p>ShereenaSaaS delivers elite reputation management services that protect your brand, enhance your online presence, and drive measurable business growth through proprietary methodologies.</p>
+                    <p>Shereenasaas delivers elite reputation management services that protect your brand, enhance your online presence, and drive measurable business growth through proprietary methodologies.</p>
                     <div class="hero-buttons">
                         <a href="#consultation" class="btn btn-primary">Book Private Consultation</a>
                         <a href="#features" class="btn btn-outline">Explore Solutions</a>
@@ -1124,7 +1220,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <h3>Positive Amplification</h3>
-                    <p>Strategically enhance and promote your best reviews to maximize visibility and impact across key platforms.</p>
+                    <p>Strategically enhance and promote your best reviews to maximise visibility and impact across key platforms.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
@@ -1132,14 +1228,14 @@
                         <i class="fas fa-filter"></i>
                     </div>
                     <h3>Impact Mitigation</h3>
-                    <p>Proprietary systems to minimize visibility and impact of damaging content while maintaining platform compliance.</p>
+                    <p>Proprietary systems to minimise visibility and impact of damaging content while maintaining platform compliance.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-chart-network"></i>
+                        <i class="fas fa-smile-beam"></i>
                     </div>
-                    <h3>Sentiment Optimization</h3>
+                    <h3>Sentiment Optimisation</h3>
                     <p>AI-powered analysis and strategic responses to improve overall perception across all review platforms.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -1152,7 +1248,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Exclusive <span>Approach</span></h2>
-                <p class="section-subtitle">Premium reputation management through specialized, results-driven methodologies</p>
+                <p class="section-subtitle">Premium reputation management through specialised, results-driven methodologies</p>
             </div>
             <div class="steps">
                 <div class="step">
@@ -1169,14 +1265,14 @@
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Strategy Implementation</h3>
-                    <p>Customized approach deployment tailored specifically to your business needs and reputation goals.</p>
+                    <p>Customised approach deployment tailored specifically to your business needs and reputation goals.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Ongoing Optimization</h3>
+                    <h3>Ongoing Optimisation</h3>
                     <p>Continuous refinement and adjustment of strategies to ensure maximum reputation impact and protection.</p>
                 </div>
             </div>
@@ -1204,7 +1300,7 @@
                             <i class="fas fa-comments"></i>
                         </div>
                         <h3>Strategy Session</h3>
-                        <p>60-minute private consultation to analyze your needs and develop a customized approach.</p>
+                        <p>60-minute private consultation to analyse your needs and develop a customised approach.</p>
                     </div>
                     <div class="consult-step">
                         <div class="step-icon-container">
@@ -1219,78 +1315,43 @@
                     <div class="calendar-header">
                         <h3>Select Consultation Time</h3>
                         <div class="calendar-nav">
-                            <i class="fas fa-chevron-left"></i>
-                            <span>August 2023</span>
-                            <i class="fas fa-chevron-right"></i>
+                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <span id="current-month-year">August 2023</span>
+                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
                     
-                    <div class="calendar-grid">
-                        <div class="calendar-day">Sun</div>
-                        <div class="calendar-day">Mon</div>
-                        <div class="calendar-day">Tue</div>
-                        <div class="calendar-day">Wed</div>
-                        <div class="calendar-day">Thu</div>
-                        <div class="calendar-day">Fri</div>
-                        <div class="calendar-day">Sat</div>
-                        
-                        <div class="calendar-date unavailable">27</div>
-                        <div class="calendar-date unavailable">28</div>
-                        <div class="calendar-date unavailable">29</div>
-                        <div class="calendar-date unavailable">30</div>
-                        <div class="calendar-date unavailable">31</div>
-                        <div class="calendar-date">1</div>
-                        <div class="calendar-date">2</div>
-                        
-                        <div class="calendar-date">3</div>
-                        <div class="calendar-date">4</div>
-                        <div class="calendar-date">5</div>
-                        <div class="calendar-date">6</div>
-                        <div class="calendar-date">7</div>
-                        <div class="calendar-date">8</div>
-                        <div class="calendar-date">9</div>
-                        
-                        <div class="calendar-date">10</div>
-                        <div class="calendar-date">11</div>
-                        <div class="calendar-date">12</div>
-                        <div class="calendar-date selected">13</div>
-                        <div class="calendar-date">14</div>
-                        <div class="calendar-date">15</div>
-                        <div class="calendar-date">16</div>
-                        
-                        <div class="calendar-date">17</div>
-                        <div class="calendar-date">18</div>
-                        <div class="calendar-date">19</div>
-                        <div class="calendar-date">20</div>
-                        <div class="calendar-date">21</div>
-                        <div class="calendar-date">22</div>
-                        <div class="calendar-date">23</div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        <!-- Calendar will be dynamically generated here -->
                     </div>
                     
-                    <div class="time-slots">
-                        <div class="time-slot">9:00 AM</div>
-                        <div class="time-slot">10:00 AM</div>
-                        <div class="time-slot selected">11:00 AM</div>
-                        <div class="time-slot">1:00 PM</div>
-                        <div class="time-slot">2:00 PM</div>
-                        <div class="time-slot">3:00 PM</div>
+                    <div class="time-slots" id="time-slots">
+                        <!-- Time slots will be dynamically generated here -->
                     </div>
                     
-                    <div class="booking-form">
+                    <form class="booking-form" id="bookingForm" method="POST" action="https://formspree.io/f/mvoebwpo">
+                        <input type="hidden" name="_replyto" value="admin@shereenasaas.co.uk">
+                        <input type="hidden" name="_subject" value="New Consultation Booking">
+                        <input type="hidden" id="selected-date" name="date" value="">
+                        <input type="hidden" id="selected-time" name="time" value="">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Business Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
                             <label for="company">Company Name</label>
-                            <input type="text" id="company" class="form-control" placeholder="Enter company name">
+                            <input type="text" id="company" name="company" class="form-control" placeholder="Enter company name" required>
                         </div>
-                        <button class="btn btn-primary" style="width: 100%; padding: 20px; font-size: 1.2rem;">Confirm Private Consultation</button>
-                    </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter phone number">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 20px; font-size: 1.2rem;">Confirm Private Consultation</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1304,7 +1365,7 @@
                 <p>Schedule your private consultation today and receive a custom reputation strategy designed for your business success</p>
                 <div class="cta-buttons">
                     <a href="#consultation" class="btn btn-primary">Book Now</a>
-                    <a href="tel:+441234567890" class="btn btn-light">Call Us: +44 123 456 7890</a>
+                    <a href="tel:+447951224031" class="btn btn-light">Call Us: +44 7951 224031</a>
                 </div>
             </div>
         </div>
@@ -1317,21 +1378,23 @@
                 <div class="footer-col">
                     <div class="logo" style="margin-bottom: 30px; font-size: 1.8rem;">
                         <i class="fas fa-shield-alt"></i>
-                        ShereenaSaaS
+                        <div class="logo-text">
+                            <div class="logo-main">SHEREENA</div>
+                            <div class="logo-sub">saas</div>
+                        </div>
                     </div>
                     <p style="margin-bottom: 30px; line-height: 1.8;">Premium reputation management solutions for discerning businesses worldwide.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/shereenasaas/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@shereenasaas" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61579258869796" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h3>Solutions</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Reputation Protection</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Review Optimization</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Review Optimisation</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Brand Enhancement</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Crisis Management</a></li>
                     </ul>
@@ -1348,14 +1411,14 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:info@shereenasaas.co.uk"><i class="fas fa-envelope"></i> info@shereenasaas.co.uk</a></li>
-                        <li><a href="tel:+441234567890"><i class="fas fa-phone"></i> +44 123 456 7890</a></li>
+                        <li><a href="mailto:admin@shereenasaas.co.uk"><i class="fas fa-envelope"></i> admin@shereenasaas.co.uk</a></li>
+                        <li><a href="tel:+447951224031"><i class="fas fa-phone"></i> +44 7951 224031</a></li>
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> London, United Kingdom</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 ShereenaSaaS.co.uk. All rights reserved. | Premium Service Agreement | Discretion Guaranteed</p>
+                <p>&copy; 2023 Shereenasaas.co.uk. All rights reserved. | Premium Service Agreement | Discretion Guaranteed</p>
             </div>
         </div>
     </footer>
@@ -1422,51 +1485,241 @@
             });
         });
         
-        // Calendar functionality
-        const calendarDates = document.querySelectorAll('.calendar-date:not(.unavailable)');
-        calendarDates.forEach(date => {
-            date.addEventListener('click', () => {
-                calendarDates.forEach(d => d.classList.remove('selected'));
-                date.classList.add('selected');
+        // Dynamic Calendar Functionality
+        const calendarGrid = document.getElementById('calendar-grid');
+        const monthYearDisplay = document.getElementById('current-month-year');
+        const prevMonthBtn = document.getElementById('prev-month');
+        const nextMonthBtn = document.getElementById('next-month');
+        const timeSlotsContainer = document.getElementById('time-slots');
+        const bookingForm = document.getElementById('bookingForm');
+        const dateInput = document.getElementById('selected-date');
+        const timeInput = document.getElementById('selected-time');
+        
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+        
+        // Days of the week
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        
+        // Generate calendar for a specific month and year
+        function generateCalendar(month, year) {
+            // Clear the calendar
+            calendarGrid.innerHTML = '';
+            
+            // Add day headers
+            days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
             });
+            
+            // Get first day of the month
+            const firstDay = new Date(year, month, 1).getDay();
+            
+            // Get number of days in the month
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Get today's date for highlighting
+            const today = new Date();
+            
+            // Add empty cells for days before the first day
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'calendar-date unavailable';
+                calendarGrid.appendChild(emptyCell);
+            }
+            
+            // Add days of the month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const date = new Date(year, month, i);
+                const dateElement = document.createElement('div');
+                dateElement.className = 'calendar-date';
+                dateElement.textContent = i;
+                
+                // Highlight today
+                if (i === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                    dateElement.classList.add('today');
+                }
+                
+                // Mark weekends as unavailable
+                if (date.getDay() === 0 || date.getDay() === 6) {
+                    dateElement.classList.add('unavailable');
+                }
+                
+                // Add click event
+                dateElement.addEventListener('click', () => {
+                    if (!dateElement.classList.contains('unavailable')) {
+                        // Remove selected class from all dates
+                        document.querySelectorAll('.calendar-date').forEach(d => {
+                            d.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked date
+                        dateElement.classList.add('selected');
+                        
+                        // Generate time slots for this date
+                        generateTimeSlots();
+                        
+                        // Update hidden input
+                        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                                          'July', 'August', 'September', 'October', 'November', 'December'];
+                        dateInput.value = `${i} ${monthNames[month]} ${year}`;
+                        
+                        // Animate selection
+                        gsap.fromTo(dateElement, 
+                            { scale: 0.8, opacity: 0.5 },
+                            { scale: 1, opacity: 1, duration: 0.3 }
+                        );
+                    }
+                });
+                
+                calendarGrid.appendChild(dateElement);
+            }
+            
+            // Update month/year display
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+            monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+        }
+        
+        // Generate time slots
+        function generateTimeSlots() {
+            // Clear previous time slots
+            timeSlotsContainer.innerHTML = '';
+            
+            // Create time slots (every hour from 9am to 5pm)
+            const startHour = 9;
+            const endHour = 17;
+            
+            for (let hour = startHour; hour <= endHour; hour++) {
+                // Skip lunch time
+                if (hour === 12) continue;
+                
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot';
+                
+                // Format time
+                const period = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour > 12 ? hour - 12 : hour;
+                timeSlot.textContent = `${displayHour}:00 ${period}`;
+                
+                // Add click event
+                timeSlot.addEventListener('click', () => {
+                    // Remove selected class from all time slots
+                    document.querySelectorAll('.time-slot').forEach(s => {
+                        s.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked time slot
+                    timeSlot.classList.add('selected');
+                    
+                    // Update hidden input
+                    timeInput.value = timeSlot.textContent;
+                    
+                    // Animate selection
+                    gsap.fromTo(timeSlot, 
+                        { scale: 0.8, opacity: 0.5 },
+                        { scale: 1, opacity: 1, duration: 0.3 }
+                    );
+                });
+                
+                timeSlotsContainer.appendChild(timeSlot);
+            }
+        }
+        
+        // Navigation buttons
+        prevMonthBtn.addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar(currentMonth, currentYear);
+            
+            // Animate month change
+            gsap.fromTo(calendarGrid, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 }
+            );
         });
         
-        const timeSlots = document.querySelectorAll('.time-slot');
-        timeSlots.forEach(slot => {
-            slot.addEventListener('click', () => {
-                timeSlots.forEach(s => s.classList.remove('selected'));
-                slot.classList.add('selected');
-            });
+        nextMonthBtn.addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar(currentMonth, currentYear);
+            
+            // Animate month change
+            gsap.fromTo(calendarGrid, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 }
+            );
         });
         
         // Form submission
-        const bookingForm = document.querySelector('.booking-form');
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            // Get selected date and time
+            const selectedDate = document.querySelector('.calendar-date.selected');
+            const selectedTime = document.querySelector('.time-slot.selected');
+            
+            if (!selectedDate || !selectedTime) {
+                alert('Please select both a date and time for your consultation.');
+                return;
+            }
+            
+            // Get form values
             const name = document.getElementById('name').value;
             
-            // Animation on submission
-            gsap.to(bookingForm, {
-                opacity: 0,
-                y: 20,
-                duration: 0.5,
-                onComplete: () => {
+            // Show loading state
+            const submitBtn = bookingForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+            
+            // Send form data
+            fetch(bookingForm.action, {
+                method: 'POST',
+                body: new FormData(bookingForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message with animated check
                     bookingForm.innerHTML = `
                         <div style="text-align: center; padding: 40px 0;">
-                            <i class="fas fa-check-circle" style="font-size: 4rem; color: #2ecc71; margin-bottom: 20px;"></i>
+                            <i class="fas fa-check-circle check-animation" style="font-size: 4rem; margin-bottom: 20px;"></i>
                             <h3 style="font-size: 2rem; margin-bottom: 20px;">Thank You, ${name}!</h3>
-                            <p style="font-size: 1.2rem; margin-bottom: 30px;">Your private consultation has been booked. You will receive confirmation details shortly.</p>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">Your private consultation has been booked for:</p>
+                            <p style="font-size: 1.3rem; margin-bottom: 20px; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                                ${selectedDate.textContent} ${monthYearDisplay.textContent} at ${selectedTime.textContent}
+                            </p>
+                            <p style="font-size: 1.1rem; margin-bottom: 30px;">Confirmation has been sent to admin@shereenasaas.co.uk</p>
                             <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 20px;">Book Another Session</button>
                         </div>
                     `;
-                    
-                    gsap.fromTo(bookingForm, 
-                        { opacity: 0, y: 20 },
-                        { opacity: 1, y: 0, duration: 0.8 }
-                    );
+                } else {
+                    alert('There was a problem with your submission. Please try again.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                 }
+            })
+            .catch(error => {
+                alert('There was a problem with your submission. Please try again.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             });
         });
+        
+        // Initialize the calendar
+        generateCalendar(currentMonth, currentYear);
         
         // Parallax effect for hero section
         window.addEventListener('mousemove', (e) => {
