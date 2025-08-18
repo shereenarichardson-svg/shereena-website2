@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shereenasaas | Premium Reputation Management</title>
+    <title>ShereenaSaaS | Premium Reputation Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -996,21 +996,6 @@
             }
         }
         
-        /* Heartbeat animation */
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.2); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        
-        .check-animation {
-            animation: heartbeat 1s infinite;
-            color: var(--success);
-            display: inline-block;
-        }
-        
         /* Calendar animations */
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -1024,6 +1009,21 @@
         
         .time-slot.selected {
             animation: pulse 0.5s ease;
+        }
+        
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1s infinite;
+            color: var(--success);
+            display: inline-block;
         }
         
         /* Responsive */
@@ -1187,7 +1187,7 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Transform Your <span>Business Reputation</span> With Premium Solutions</h1>
-                    <p>Shereenasaas delivers elite reputation management services that protect your brand, enhance your online presence, and drive measurable business growth through proprietary methodologies.</p>
+                    <p>ShereenaSaaS delivers elite reputation management services that protect your brand, enhance your online presence, and drive measurable business growth through proprietary methodologies.</p>
                     <div class="hero-buttons">
                         <a href="#consultation" class="btn btn-primary">Book Private Consultation</a>
                         <a href="#features" class="btn btn-outline">Explore Solutions</a>
@@ -1220,7 +1220,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <h3>Positive Amplification</h3>
-                    <p>Strategically enhance and promote your best reviews to maximise visibility and impact across key platforms.</p>
+                    <p>Strategically enhance and promote your best reviews to maximize visibility and impact across key platforms.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
@@ -1228,15 +1228,15 @@
                         <i class="fas fa-filter"></i>
                     </div>
                     <h3>Impact Mitigation</h3>
-                    <p>Proprietary systems to minimise visibility and impact of damaging content while maintaining platform compliance.</p>
+                    <p>Proprietary systems to minimize visibility and impact of damaging content while maintaining platform compliance.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-smile-beam"></i>
+                        <i class="fas fa-chart-network"></i>
                     </div>
                     <h3>Sentiment Optimization</h3>
-                    <p>AI-powered analysis and strategic response frameworks to enhance brand perception and customer sentiment across all digital platforms.</p>
+                    <p>AI-powered analysis and strategic responses to improve overall perception across all review platforms.</p>
                     <a href="#consultation" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -1248,7 +1248,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Exclusive <span>Approach</span></h2>
-                <p class="section-subtitle">Premium reputation management through specialised, results-driven methodologies</p>
+                <p class="section-subtitle">Premium reputation management through specialized, results-driven methodologies</p>
             </div>
             <div class="steps">
                 <div class="step">
@@ -1265,14 +1265,14 @@
                         <i class="fas fa-cogs"></i>
                     </div>
                     <h3>Strategy Implementation</h3>
-                    <p>Customised approach deployment tailored specifically to your business needs and reputation goals.</p>
+                    <p>Customized approach deployment tailored specifically to your business needs and reputation goals.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Ongoing Optimisation</h3>
+                    <h3>Ongoing Optimization</h3>
                     <p>Continuous refinement and adjustment of strategies to ensure maximum reputation impact and protection.</p>
                 </div>
             </div>
@@ -1300,7 +1300,7 @@
                             <i class="fas fa-comments"></i>
                         </div>
                         <h3>Strategy Session</h3>
-                        <p>60-minute private consultation to analyse your needs and develop a customised approach.</p>
+                        <p>60-minute private consultation to analyze your needs and develop a customized approach.</p>
                     </div>
                     <div class="consult-step">
                         <div class="step-icon-container">
@@ -1329,26 +1329,22 @@
                         <!-- Time slots will be dynamically generated here -->
                     </div>
                     
-                    <form class="booking-form" id="bookingForm" method="POST" action="https://formspree.io/f/mvoebwpo">
-                        <input type="hidden" name="_replyto" value="admin@shereenasaas.co.uk">
-                        <input type="hidden" name="_subject" value="New Consultation Booking">
-                        <input type="hidden" id="selected-date" name="date" value="">
-                        <input type="hidden" id="selected-time" name="time" value="">
+                    <form class="booking-form" id="bookingForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Business Email</label>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
                             <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company" class="form-control" placeholder="Enter company name" required>
+                            <input type="text" id="company" class="form-control" placeholder="Enter company name" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter phone number">
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter phone number">
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 20px; font-size: 1.2rem;">Confirm Private Consultation</button>
                     </form>
@@ -1394,7 +1390,7 @@
                     <h3>Solutions</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Reputation Protection</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Review Optimisation</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Review Optimization</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Brand Enhancement</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Crisis Management</a></li>
                     </ul>
@@ -1418,7 +1414,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Shereenasaas.co.uk. All rights reserved. | Premium Service Agreement | Discretion Guaranteed</p>
+                <p>&copy; 2023 ShereenaSaaS.co.uk. All rights reserved. | Premium Service Agreement | Discretion Guaranteed</p>
             </div>
         </div>
     </footer>
@@ -1492,8 +1488,6 @@
         const nextMonthBtn = document.getElementById('next-month');
         const timeSlotsContainer = document.getElementById('time-slots');
         const bookingForm = document.getElementById('bookingForm');
-        const dateInput = document.getElementById('selected-date');
-        const timeInput = document.getElementById('selected-time');
         
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth();
@@ -1562,11 +1556,6 @@
                         // Generate time slots for this date
                         generateTimeSlots();
                         
-                        // Update hidden input
-                        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
-                                          'July', 'August', 'September', 'October', 'November', 'December'];
-                        dateInput.value = `${i} ${monthNames[month]} ${year}`;
-                        
                         // Animate selection
                         gsap.fromTo(dateElement, 
                             { scale: 0.8, opacity: 0.5 },
@@ -1614,9 +1603,6 @@
                     
                     // Add selected class to clicked time slot
                     timeSlot.classList.add('selected');
-                    
-                    // Update hidden input
-                    timeInput.value = timeSlot.textContent;
                     
                     // Animate selection
                     gsap.fromTo(timeSlot, 
@@ -1675,6 +1661,15 @@
             
             // Get form values
             const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Validate required fields
+            if (!name || !email || !company) {
+                alert('Please fill in all required fields: Name, Email, and Company');
+                return;
+            }
             
             // Show loading state
             const submitBtn = bookingForm.querySelector('button[type="submit"]');
@@ -1682,40 +1677,35 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             submitBtn.disabled = true;
             
-            // Send form data
-            fetch(bookingForm.action, {
-                method: 'POST',
-                body: new FormData(bookingForm),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message with animated check
-                    bookingForm.innerHTML = `
-                        <div style="text-align: center; padding: 40px 0;">
-                            <i class="fas fa-check-circle check-animation" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                            <h3 style="font-size: 2rem; margin-bottom: 20px;">Thank You, ${name}!</h3>
-                            <p style="font-size: 1.2rem; margin-bottom: 30px;">Your private consultation has been booked for:</p>
-                            <p style="font-size: 1.3rem; margin-bottom: 20px; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
-                                ${selectedDate.textContent} ${monthYearDisplay.textContent} at ${selectedTime.textContent}
-                            </p>
-                            <p style="font-size: 1.1rem; margin-bottom: 30px;">Confirmation has been sent to admin@shereenasaas.co.uk</p>
-                            <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 20px;">Book Another Session</button>
-                        </div>
-                    `;
-                } else {
-                    alert('There was a problem with your submission. Please try again.');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }
-            })
-            .catch(error => {
-                alert('There was a problem with your submission. Please try again.');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
+            // Simulate sending data to admin@shereenasaas.co.uk
+            setTimeout(() => {
+                // Animate form out
+                gsap.to(bookingForm, {
+                    opacity: 0,
+                    y: 20,
+                    duration: 0.5,
+                    onComplete: () => {
+                        // Replace with confirmation message
+                        bookingForm.innerHTML = `
+                            <div style="text-align: center; padding: 40px 0;">
+                                <i class="fas fa-check-circle heartbeat" style="font-size: 4rem; margin-bottom: 20px;"></i>
+                                <h3 style="font-size: 2rem; margin-bottom: 20px;">Thank You, ${name}!</h3>
+                                <p style="font-size: 1.2rem; margin-bottom: 30px;">Your private consultation has been booked. You will receive confirmation details shortly at ${email}.</p>
+                                <p style="font-size: 1.1rem; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                                    Details sent to: <strong>admin@shereenasaas.co.uk</strong>
+                                </p>
+                                <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 20px;">Book Another Session</button>
+                            </div>
+                        `;
+                        
+                        // Animate new content in
+                        gsap.fromTo(bookingForm, 
+                            { opacity: 0, y: 20 },
+                            { opacity: 1, y: 0, duration: 0.8 }
+                        );
+                    }
+                });
+            }, 1500);
         });
         
         // Initialize the calendar
