@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <style>
         :root {
             --primary: #6c43f0;
@@ -1246,57 +1247,89 @@
             z-index: 2;
         }
         
-        /* Animations */
-        @keyframes float {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(10px, -15px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
+        /* Email Confirmation Notification */
+        .email-confirmation {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--darker);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 3000;
+            display: none;
+            max-width: 400px;
+            transform: translateX(120%);
+            transition: transform 0.5s ease;
         }
         
-        /* Calendar animations */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .email-confirmation.show {
+            display: block;
+            transform: translateX(0);
         }
         
-        .calendar-date.selected {
-            animation: pulse 0.5s ease;
+        .email-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         
-        .time-slot.selected {
-            animation: pulse 0.5s ease;
+        .email-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
         }
         
-        /* Heartbeat animation */
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.15); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        .email-title {
+            font-weight: 600;
+            font-size: 1.2rem;
         }
         
-        .heartbeat {
-            animation: heartbeat 1s infinite;
+        .email-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--gray);
+        }
+        
+        .email-recipient {
+            color: var(--lighter);
+            font-weight: 500;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .email-progress {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .email-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 3s linear;
+        }
+        
+        .email-success {
             color: var(--success);
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            display: none;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .email-error {
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            display: none;
         }
         
         /* Responsive */
@@ -1390,6 +1423,10 @@
             .admin-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .email-confirmation {
+                max-width: 320px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1443,10 +1480,91 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .email-confirmation {
+                max-width: 280px;
+                padding: 12px 18px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(10px, -15px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+        /* Calendar animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .calendar-date.selected {
+            animation: pulse 0.5s ease;
+        }
+        
+        .time-slot.selected {
+            animation: pulse 0.5s ease;
+        }
+        
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1s infinite;
+            color: var(--success);
+            display: inline-block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Email Confirmation Notification -->
+    <div class="email-confirmation" id="emailConfirmation">
+        <div class="email-header">
+            <i class="fas fa-paper-plane email-icon"></i>
+            <div class="email-title">Sending Email Confirmation</div>
+        </div>
+        <div class="email-content">
+            Your booking details are being sent to:
+            <span class="email-recipient" id="sentEmail">admin@shereenasaas.co.uk</span>
+        </div>
+        <div class="email-progress">
+            <div class="email-progress-bar" id="emailProgressBar"></div>
+        </div>
+        <div class="email-success" id="emailSuccess">
+            <i class="fas fa-check-circle"></i>
+            Email successfully delivered
+        </div>
+        <div class="email-error" id="emailError">
+            <i class="fas fa-exclamation-triangle"></i>
+            Failed to send email - retrying...
+        </div>
+    </div>
+
     <!-- Passcode Modal (Hidden by default) -->
     <div class="passcode-modal" id="passcodeModal" style="display: none;">
         <div class="passcode-container">
@@ -1791,6 +1909,11 @@
         // Initialize GSAP with ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
         
+        // Initialize EmailJS with your credentials
+        (function() {
+            emailjs.init("YOUR_EMAILJS_USER_ID");
+        })();
+        
         // Floating animation for hero elements
         gsap.to(".dashboard-mockup", {
             y: 20,
@@ -2016,6 +2139,87 @@
             );
         });
         
+        // Email notification elements
+        const emailConfirmation = document.getElementById('emailConfirmation');
+        const sentEmailElement = document.getElementById('sentEmail');
+        const emailProgressBar = document.getElementById('emailProgressBar');
+        const emailSuccess = document.getElementById('emailSuccess');
+        const emailError = document.getElementById('emailError');
+        
+        // Function to send booking confirmation email
+        function sendBookingEmail(email, bookingDetails) {
+            // Prepare email template parameters
+            const templateParams = {
+                to_email: email,
+                to_name: bookingDetails.name,
+                from_name: 'ShereenaSaaS',
+                booking_date: bookingDetails.date,
+                booking_time: bookingDetails.time,
+                company: bookingDetails.company,
+                client_name: bookingDetails.name,
+                client_email: bookingDetails.email,
+                client_phone: bookingDetails.phone || 'N/A'
+            };
+            
+            // Send email using EmailJS
+            return emailjs.send(
+                'service_8jpnw7c', // Your EmailJS service ID
+                'template_7u0v4sh', // Your EmailJS template ID
+                templateParams
+            );
+        }
+        
+        // Function to send email confirmation with visual feedback
+        function sendEmailConfirmation(email, bookingDetails) {
+            // Update the displayed email
+            sentEmailElement.textContent = email;
+            
+            // Show email notification
+            emailConfirmation.classList.add('show');
+            
+            // Reset progress bar and messages
+            emailProgressBar.style.width = '0%';
+            emailSuccess.style.display = 'none';
+            emailError.style.display = 'none';
+            
+            // Animate progress bar
+            gsap.to(emailProgressBar, {
+                width: '100%',
+                duration: 3,
+                ease: "linear",
+                onComplete: () => {
+                    // Hide after delay
+                    setTimeout(() => {
+                        emailConfirmation.classList.remove('show');
+                    }, 3000);
+                }
+            });
+            
+            // Send the email
+            sendBookingEmail(email, bookingDetails)
+                .then((response) => {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    emailSuccess.style.display = 'flex';
+                    emailError.style.display = 'none';
+                })
+                .catch((error) => {
+                    console.error('Failed to send email:', error);
+                    emailError.style.display = 'flex';
+                    emailSuccess.style.display = 'none';
+                    
+                    // Retry after 5 seconds
+                    setTimeout(() => {
+                        emailProgressBar.style.width = '0%';
+                        gsap.to(emailProgressBar, {
+                            width: '100%',
+                            duration: 3,
+                            ease: "linear"
+                        });
+                        sendBookingEmail(email, bookingDetails);
+                    }, 5000);
+                });
+        }
+        
         // Form submission
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -2043,7 +2247,12 @@
             
             // Create date string
             const date = new Date(currentYear, currentMonth, parseInt(selectedDate.textContent));
-            const dateStr = date.toISOString().split('T')[0];
+            const dateStr = date.toLocaleDateString('en-GB', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
             
             // Create new booking
             const newBooking = {
@@ -2055,8 +2264,7 @@
                 email,
                 phone,
                 status: 'pending',
-                timestamp: new Date().toISOString(),
-                location: getClientLocation()
+                timestamp: new Date().toISOString()
             };
             
             // Add to bookings
@@ -2071,6 +2279,12 @@
                 { opacity: 0, y: 20 },
                 { opacity: 1, y: 0, duration: 0.8 }
             );
+            
+            // Send email confirmation to client
+            sendEmailConfirmation(email, newBooking);
+            
+            // Also send to admin email
+            sendEmailConfirmation('admin@shereenasaas.co.uk', newBooking);
         });
         
         // New booking button
@@ -2169,26 +2383,11 @@
             localStorage.setItem('shereena_bookings', JSON.stringify(bookings));
         }
         
-        // Get client location
-        function getClientLocation() {
-            try {
-                // Try to get location from browser
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        position => {
-                            // In a real app, we would reverse geocode to get city name
-                            return "Detected Location";
-                        },
-                        error => {
-                            console.log("Location permission denied");
-                            return "Location not available";
-                        }
-                    );
-                }
-            } catch (e) {
-                console.log("Geolocation error", e);
-            }
-            return "Location not available";
+        // Add booking
+        function addBooking(booking) {
+            bookings.push(booking);
+            saveBookings();
+            updateAdminDashboard();
         }
         
         // Show admin access modal
@@ -2228,13 +2427,6 @@
             syncIndicator.style.display = 'none';
         });
         
-        // Add booking
-        function addBooking(booking) {
-            bookings.push(booking);
-            saveBookings();
-            updateAdminDashboard();
-        }
-        
         // Update admin dashboard
         function updateAdminDashboard() {
             // Update stats
@@ -2270,9 +2462,6 @@
                     <td>
                         ${booking.email}<br>
                         ${booking.phone}
-                        <div class="location-info">
-                            <i class="fas fa-map-marker-alt"></i> ${booking.location || "Location not available"}
-                        </div>
                     </td>
                     <td><span class="status ${booking.status}">${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}</span></td>
                     <td>
@@ -2321,11 +2510,6 @@
                 syncIndicator.style.display = 'none';
             }
         });
-        
-        // Initialize admin data
-        if (bookings.length === 0) {
-            saveBookings();
-        }
         
         // Simulate real-time updates
         setInterval(() => {
